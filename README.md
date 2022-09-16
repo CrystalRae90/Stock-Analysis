@@ -113,7 +113,7 @@ Because the data is stored within the array, we no longer need to enter the data
     
 When running this method and setting the values once the loops were complete, we were able to achieve the results to show the below. Total time to run the 2018 Refactored Script was 2.1875 seconds.      
         
-![All_Stocks_Results_2018_Refactored.png](Resources/All_Stocks_Results_2018_Refactored.png)                           
+                     
 
 <kbd>![VBA_Challenge_2018_Refactor.png](Resources/VBA_Challenge_2018_Refactor.PNG)<kbd>  
         
