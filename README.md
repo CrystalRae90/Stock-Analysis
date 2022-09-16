@@ -53,7 +53,7 @@ Finally, all values are entered into the spreadsheet before looping to the next 
 
         Next i
 
-When running this method and setting the values once the loops were complete, we were able to achieve the results to show the below. Total time to run the 2018 Code was 2.1875 seconds. 
+When running this method and setting the values once the loops were complete, we were able to achieve the results to shown below. Total time to run the 2018 Code was 2.1875 seconds. 
 
 ![All_Stocks_Results_2018.png](Resources/All_Stocks_Results_2018.png)                           
 
@@ -61,7 +61,7 @@ When running this method and setting the values once the loops were complete, we
 
 ### 2018 Refactored Code
 
-Unlike the 2018 Code, the 2018 Refactored Code uses multiple arrays to increase the efficiency of the code. The Ticker Volumes, Starting and Ending Prices were previous set as individual variables. In this new script, we have set them to also be arrays similar to *tickers*. We also introduced a new variable called *TickerIndex* to be used later as the index of the arrays. 
+Unlike the 2018 Code, the 2018 Refactored Code uses multiple arrays to increase the efficiency of the code. The Ticker Volumes, Starting and Ending Prices were previous set as individual variables. In this new script, we set them to also be arrays similar to *tickers*. We also introduced a new variable called *TickerIndex* to be used later as the index of the arrays. 
       
       Dim TickerIndex As Single
     
@@ -111,14 +111,14 @@ Because the data is stored within the array, we no longer need to enter the data
 
         Next i
     
-When running this method and setting the values once the loops were complete, we were able to achieve the results to show the below. Total time to run the 2018 Refactored Code was 0.34375 seconds.      
+When running this method and setting the values once the loops were complete, we were able to achieve the results to shown below. Total time to run the 2018 Refactored Code was 0.34375 seconds.      
         
 ![All_Stocks_Results_2018_Refactored.png](Resources/All_Stocks_Results_2018_Refactored.png)       
 <kbd>![VBA_Challenge_2018_Refactor.png](Resources/VBA_Challenge_2018_Refactor.PNG)<kbd>  
         
 ### Overall Results 
         
-Overall, the refactored code took about six times less time to run than the original. By using a group of arrays to store the data and adding an additional variable to link the arrays, we reduce the need for the nested for loop. By shorting the number of times the for loop needed to run in the 2018 Refactor Code, the total amount of time was also reduced.  
+Overall, the refactored code took about six times less to run than the original. By using a group of arrays to store the data and adding an additional variable to link the arrays, we reduce the need for the nested for loop. By shorting the number of times the for loop needed to run in the 2018 Refactor Code, the total amount of time was also reduced.  
         
 ## Summary
 -What are the advantages or disadvantages of refactoring code?
