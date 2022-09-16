@@ -10,7 +10,7 @@ While the code written in the module was sufficient for the exercise, it would n
 ### 2018 Script 
 The 2018 Script used a nested for loop to loop through both the tickers, and then each row to determine the values for Total Volume, Starting Price and Endinging Price. 
 
-The initial for loop shown below shows that we want to loop through the all 12 tickers, starting 0 as all Tickers for i had previously been initialized for the tickers array. In addition, we set the Total Volume to zero each time i looped through. 
+The initial for loop shown below shows that we want to loop through the all 12 tickers, starting 0 as all Tickers for *i* had previously been initialized for the tickers array. In addition, we set the *TotalVolume* to zero each time *i* looped through. 
 
         For i = 0 To 11
 
@@ -18,7 +18,7 @@ The initial for loop shown below shows that we want to loop through the all 12 t
     
         TotalVolume = 0
 
- We then nested another for loop within to loop through the rows where j is the row number. For each ticker, the goal was to loop through the rows and determine if that row belonged to that ticker based on value i. If the ticker was the same then, the total volume would be added to the totalvolume variable. For the prices, it determined it based on the previous and next rows in addition to the current rows to set prices.         
+We then nested another for loop within to loop through the rows where *j* is the row number. For each ticker, the goal was to loop through the rows and determine if that row belonged to that ticker based on value *i*. If the *ticker* was the same then, the total volume would be added to the *TotalVolume* variable. For the prices, it determined it based on the previous and next rows in addition to the current rows to set prices.         
 
 
             For j = 2 To rowend
@@ -43,6 +43,16 @@ The initial for loop shown below shows that we want to loop through the all 12 t
        
             Next j
 
+Finally all values are entered into the spreadsheet before looping to the next ticker. 
+
+        Worksheets("All Stocks Analysis").Activate
+    
+         Cells(4 + i, 1).Value = ticker
+         Cells(4 + i, 2).Value = TotalVolume
+         Cells(4 + i, 3).Value = (EndingPrice / StartingPrice) - 1
+
+        Next i
+
 When running this method and setting the values once the loops were complete, we were able to achieve the results to show the below. Total time to run the 2018 Script was 2.1875 seconds. 
 
 ![All_Stocks_Results_2018.png](Resources/All_Stocks_Results_2018.png)                           
@@ -51,13 +61,17 @@ When running this method and setting the values once the loops were complete, we
 
 ## 2018 Refactored Script
 
-Unlike the 2018 Script, the 2018 Refactored Script uses multiple arrays to increase the efficiency of the code. The Ticker Volumes, Starting and Ending Prices were previous set as indivual variables. In this new script, we have set them to also be arrays similar to tickers. 
-
+Unlike the 2018 Script, the 2018 Refactored Script uses multiple arrays to increase the efficiency of the code. The Ticker Volumes, Starting and Ending Prices were previous set as indivual variables. In this new script, we have set them to also be arrays similar to tickers. We also introduced a new variable called *TickerIndex* to be used later on as the index of the arrays. 
+      
+      Dim TickerIndex As Single
+    
+      TickerIndex = 0
+        
       Dim TickerVolumes(12) As Long
       Dim TickerStartingPrices(12) As Single
       Dim TickerEndingPrices(12) As Single
       
-Similar to 2018 Script, a for loop was written 
+Similar to 2018 Script, a For loop was written to loop through the tickers array, only this time the *Tickervolumes* for all indexes *i* are set to 0. 
 
       For i = 0 To 11
 
@@ -65,47 +79,44 @@ Similar to 2018 Script, a for loop was written
 
       Next i
 
-
-
+The major differece between the two codes is how we choose to store the data and cycle through the rows. The use of the arrays, allows for the data to be stored within the array rather than only having one value set for the variable. With the addition of the *TickerIndex* variable, we no longer needed to use a nested for loop to cycle through the rows. After intializing the *Tickerindex* to zero, we inititally loop through the rows for *TickerIndex* at zero but then add 1 after we find the *TickerEndingPrices* value. At that point, it continues on where it left off in the row count but is now on the next value. 
+        
         For i = 2 To RowCount
     
-'3a) Increase volume for current ticker
-'Take current TickerVolume for that tickerindex and increase it by new value
-
-     TickerVolumes(TickerIndex) = TickerVolumes(TickerIndex) + Cells(i, 8).Value
-
-'3b) Check if the current row is the first row with the selected tickerIndex.
-        'If  Then
-
-'If Cell in row above is not equal to current ticker based on current ticker index, then remember starting price
+           TickerVolumes(TickerIndex) = TickerVolumes(TickerIndex) + Cells(i, 8).Value
+                   
+                If Cells(i - 1, 1).Value <> Tickers(TickerIndex) Then
         
-           
-        If Cells(i - 1, 1).Value <> Tickers(TickerIndex) Then
+                        TickerStartingPrices(TickerIndex) = Cells(i, 6).Value
+                
+                End If
         
-        TickerStartingPrices(TickerIndex) = Cells(i, 6).Value
+                 If Cells(i + 1, 1).Value <> Tickers(TickerIndex) Then
         
-        'Debug.Print (TickerStartingPrices(TickerIndex))
+                        TickerEndingPrices(TickerIndex) = Cells(i, 6).Value
         
-        End If
-        
-'3c) check if the current row is the last row with the selected ticker
-'If the next rowâ€™s ticker doesnâ€™t match, increase the tickerIndex.
-'If  Then
-        
-'If Cell in row below is not equal to current ticker based on current ticker index, then remember ending price
-
-         If Cells(i + 1, 1).Value <> Tickers(TickerIndex) Then
-        
-         TickerEndingPrices(TickerIndex) = Cells(i, 6).Value
-         
-         'Debug.Print ("Ending If Loop")
-
- '3d Increase the tickerIndex.
-        
-         TickerIndex = TickerIndex + 1
+                         TickerIndex = TickerIndex + 1
                  
-         End If 
+                End If 
 
+Because the data is stored within the array, we no longer need to enter the data as part of the For loop. Instead the data is stored witin the array and then put in the appropriate cells after. 
+
+        For i = 0 To 11
+        
+                Worksheets("All Stocks Analysis").Activate
+        
+                Cells(4 + i, 1).Value = Tickers(i)
+                Cells(4 + i, 2).Value = TickerVolumes(i)
+                Cells(4 + i, 3).Value = (TickerEndingPrices(i) / TickerStartingPrices(i)) - 1
+
+        Next i
+    
+When running this method and setting the values once the loops were complete, we were able to achieve the results to show the below. Total time to run the 2018 Refactored Script was 2.1875 seconds.      
+        
+![All_Stocks_Results_2018_Refactored.png](Resources/All_Stocks_Results_2018_Refactored.png)                           
+
+<kbd>![VBA_Challenge_2018_Refactor.png](Resources/VBA_Challenge_2018_Refactor.PNG)<kbd>  
+        
 ## Summary: In a summary statement, address the following questions.
 What are the advantages or disadvantages of refactoring code?
 How do these pros and cons apply to refactoring the original VBA script?
