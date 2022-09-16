@@ -5,10 +5,10 @@ The purpose of this project was to take the code written in the module and refac
 
 ## Results: Using images and examples of your code, compare the stock performance between 2018 and 2018, as well as the execution times of the original script and the refactored script.
 
-While the code written in the module was sufficient for the exercise, it would not have been efficient if the data size had increased. In order to look at the difference between the two run times, it is important to deciher how each code was run. To be able to differentiate the two codes, the module code will be referred to "2018 Script" an the refactored code will be referred to as "2018 Refactored Script."
+While the code written in the module was sufficient for the exercise, it would not have been efficient if the data size had increased. In order to look at the difference between the two run times, it is important to deciher how each code was run. To be able to differentiate the two codes, the module code will be referred to "2018 Code" an the refactored code will be referred to as "2018 Refactored Code."
 
-### 2018 Script 
-The 2018 Script used a nested for loop to loop through both the tickers, and then each row to determine the values for Total Volume, Starting Price and Endinging Price. 
+### 2018 Code 
+The 2018 Code used a nested for loop to loop through both the tickers, and then each row to determine the values for Total Volume, Starting Price and Endinging Price. 
 
 The initial for loop shown below shows that we want to loop through the all 12 tickers, starting 0 as all Tickers for *i* had previously been initialized for the tickers array. In addition, we set the *TotalVolume* to zero each time *i* looped through. 
 
@@ -53,15 +53,15 @@ Finally all values are entered into the spreadsheet before looping to the next t
 
         Next i
 
-When running this method and setting the values once the loops were complete, we were able to achieve the results to show the below. Total time to run the 2018 Script was 2.1875 seconds. 
+When running this method and setting the values once the loops were complete, we were able to achieve the results to show the below. Total time to run the 2018 Code was 2.1875 seconds. 
 
 ![All_Stocks_Results_2018.png](Resources/All_Stocks_Results_2018.png)                           
 
 <kbd>![VBA_Challenge_2018.png](Resources/VBA_Challenge_2018.PNG)<kbd>
 
-## 2018 Refactored Script
+### 2018 Refactored Code
 
-Unlike the 2018 Script, the 2018 Refactored Script uses multiple arrays to increase the efficiency of the code. The Ticker Volumes, Starting and Ending Prices were previous set as indivual variables. In this new script, we have set them to also be arrays similar to tickers. We also introduced a new variable called *TickerIndex* to be used later on as the index of the arrays. 
+Unlike the 2018 Code, the 2018 Refactored Code uses multiple arrays to increase the efficiency of the code. The Ticker Volumes, Starting and Ending Prices were previous set as indivual variables. In this new script, we have set them to also be arrays similar to tickers. We also introduced a new variable called *TickerIndex* to be used later on as the index of the arrays. 
       
       Dim TickerIndex As Single
     
@@ -71,7 +71,7 @@ Unlike the 2018 Script, the 2018 Refactored Script uses multiple arrays to incre
       Dim TickerStartingPrices(12) As Single
       Dim TickerEndingPrices(12) As Single
       
-Similar to 2018 Script, a For loop was written to loop through the tickers array, only this time the *Tickervolumes* for all indexes *i* are set to 0. 
+Similar to 2018 Codew, a For loop was written to loop through the tickers array, only this time the *Tickervolumes* for all indexes *i* are set to 0. 
 
       For i = 0 To 11
 
@@ -111,13 +111,19 @@ Because the data is stored within the array, we no longer need to enter the data
 
         Next i
     
-When running this method and setting the values once the loops were complete, we were able to achieve the results to show the below. Total time to run the 2018 Refactored Script was 2.1875 seconds.      
+When running this method and setting the values once the loops were complete, we were able to achieve the results to show the below. Total time to run the 2018 Refactored Code was 0.34375 seconds.      
         
-                     
-
+![All_Stocks_Results_2018_Refactored.png](Resources/All_Stocks_Results_2018_Refactored.png)       
 <kbd>![VBA_Challenge_2018_Refactor.png](Resources/VBA_Challenge_2018_Refactor.PNG)<kbd>  
         
+### Overall Results 
+        
+Overall, the refactored code took about six times less time to run than the original. By using a group of arrays to store the data and adding an additional variable to link the arrays, we reduce the need for the nested for loop. By shorting the amount of times the for loop needed to run in the 2018 Refractor Code, the total amount of time was also reduced.  
+        
 ## Summary: In a summary statement, address the following questions.
-What are the advantages or disadvantages of refactoring code?
-How do these pros and cons apply to refactoring the original VBA script?
+
+        -What are the advantages or disadvantages of refactoring code?
+
+        
+        -How do these pros and cons apply to refactoring the original VBA script?
 
